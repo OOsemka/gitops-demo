@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - virtualization-operator-group.yaml
   - virtualization-subscription.yaml
+  - virtualization-hco.yaml
