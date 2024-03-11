@@ -1,0 +1,19 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: win2k19
+  namespace: openshift-virtualization-os-images
+  annotations:
+    cdi.kubevirt.io/storage.bind.immediate.requested: "true"
+    kubevirt.ui/provider: Microsoft
+spec:
+  source:
+    pvc:
+      namespace: kubevirt-gitops
+      name: windows-install-rootdisk
+  storage: 
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 22Gi

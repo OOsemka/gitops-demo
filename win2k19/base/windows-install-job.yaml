@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: windows-install
+  namespace: kubevirt-gitops
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      serviceAccountName: windows-install
+      restartPolicy: Never
+      containers:
+      - name: ose-cli
+        image: registry.redhat.io/openshift4/ose-cli:v4.14.0
+        volumeMounts:
+        - name: windows-install-scripts
+          mountPath: /scripts
+        command: ["/bin/sh"]
+        args: ["/scripts/install.sh"]
+      volumes:
+      - name: windows-install-scripts
+        configMap:
+          name: windows-install-scripts
+

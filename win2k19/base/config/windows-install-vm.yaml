@@ -1,0 +1,79 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    name.os.template.kubevirt.io/win2k19: Microsoft Windows Server 2019
+    description: windows-install
+  labels:
+    app: windows-install
+  name: windows-install
+spec:
+  runStrategy: RerunOnFailure
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: windows-install
+        vm.kubevirt.io/name: windows-install
+        workload.template.kubevirt.io/server: 'true'
+    spec:
+      domain:
+        cpu:
+          cores: 2
+        devices:
+          disks:
+          - name: windows-install-rootdisk
+            disk:
+              bus: sata
+          - name: win2k19-install-iso
+            bootOrder: 1
+            cdrom:
+              bus: sata
+          - name: windows-guest-tools
+            cdrom:
+              bus: sata
+          - name: windows-install-scripts
+            cdrom:
+              bus: sata
+          interfaces:
+          - name: default
+            model: virtio
+            masquerade: {}
+          networkInterfaceMultiqueue: true
+          rng: {}
+        machine:
+          type: pc-q35-rhel8.4.0
+        resources:
+          requests:
+            memory: 4Gi
+      evictionStrategy: LiveMigrate
+      hostname: windows-install
+      networks:
+      - name: default
+        pod: {}
+      terminationGracePeriodSeconds: 180
+      volumes:
+      - name: windows-install-rootdisk 
+        dataVolume:
+          name: windows-install-rootdisk
+      - name: win2k19-install-iso
+        persistentVolumeClaim:
+          claimName: win2k19-install-iso
+      - name: windows-guest-tools
+        containerDisk:
+          image: registry.redhat.io/container-native-virtualization/virtio-win
+      - name: windows-install-scripts
+        configMap:
+          name: WININST_CM
+  dataVolumeTemplates:
+  - metadata:
+      name: windows-install-rootdisk
+    spec:
+      pvc:
+        volumeMode: Block
+        accessModes:
+        - ReadWriteMany
+        resources:
+          requests:
+            storage: 30Gi
+      source:
+        blank: {}
