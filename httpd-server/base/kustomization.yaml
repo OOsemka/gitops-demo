@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: httpd-server
 
 resources:
+  - namespace.yaml
   - sa.yaml
   - clusterrole.yml
   - clusterrolebinding.yml
