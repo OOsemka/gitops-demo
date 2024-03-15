@@ -29,7 +29,7 @@ echo "VM is started. Waiting for VMI to finish successfully."
 vmi_phase=$(${KC} get vmi windows-install -o jsonpath='{.status.phase}')
 while [ "$vmi_phase" != "Succeeded" ]
 do
-    sleep 30
+    sleep 10
     vmi_phase=$(${KC} get vmi windows-install -o jsonpath='{.status.phase}')
 done
 
