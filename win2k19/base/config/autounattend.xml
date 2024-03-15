@@ -101,11 +101,11 @@
                 </Password>
                 <Enabled>true</Enabled>
                 <LogonCount>1</LogonCount>
-                <Username>Admin</Username>
+                <Username>Administrator</Username>
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -ExecutionPolicy ByPass Invoke-Expression (Invoke-WebRequest -Uri http://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy ByPass Invoke-Expression (Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)</CommandLine>
                     <Order>1</Order>
 		            <Description>Enable Ansible remote management</Description>
                     <RequiresUserInput>false</RequiresUserInput>
