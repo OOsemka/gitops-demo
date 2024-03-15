@@ -96,7 +96,7 @@
 	    </UserAccounts>
 	    <AutoLogon>
                 <Password>
-                    <Value></Value>
+                    <Value>Passw0rd</Value>
                     <PlainText>true</PlainText>
                 </Password>
                 <Enabled>true</Enabled>
