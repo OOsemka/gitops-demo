@@ -106,5 +106,5 @@ spec:
         - name: sysprep
           sysprep:
             configMap:
-              name: windows-vm-artifacts
+              name: windows-vm-unattended
 

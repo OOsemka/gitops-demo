@@ -1,8 +1,9 @@
 namespace: kubevirt-gitops
 resources:
+- windows2019-unattended-configmap.yaml
 - windows2019-create-vm-from-template.yaml
 
-configMapGenerator:
-- name: windows-vm-artifacts
-  files:
-  - config/unattend.xml
+#configMapGenerator:
+#- name: windows-vm-artifacts
+#  files:
+#  - config/unattend.xml
