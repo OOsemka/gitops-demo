@@ -3,6 +3,8 @@ kind: VirtualMachine
 metadata:
   name: win2k19-gitops
   namespace: kubevirt-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     app: win2k19-gitops
     vm.kubevirt.io/template: windows2k19-server-medium
