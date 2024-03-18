@@ -63,6 +63,9 @@ spec:
             - cdrom:
                 bus: sata
               name: windows-drivers-disk
+            - cdrom:
+                bus: sata
+              name: sysprep
           inputs:
             - bus: usb
               name: tablet
