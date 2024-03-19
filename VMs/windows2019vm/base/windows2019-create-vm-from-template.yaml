@@ -2,7 +2,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: win2k19-gitops
-  namespace: kubevirt-gitops
+  namespace: windowsvm-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   labels:
