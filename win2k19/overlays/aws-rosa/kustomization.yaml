@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - windows-install-rbac.yaml
+
+patchesJson6902:
+  - target:
+      version: batch/v1
+      kind: Job
+      name: windows-install
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/image
+        value: registry.redhat.io/openshift4/ose-cli:v4.13.0
+
+
