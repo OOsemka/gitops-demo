@@ -47,13 +47,25 @@ ${KC} apply -n ${IMAGES_NS} -f clone-boot-source.yaml
 echo "Applied DataVolume to clone boot source image"
 
 sleep 5
-dv_phase=$(${KC} -n ${IMAGES_NS} get dv win2k19 -o jsonpath='{.status.phase}')
-while [ "$dv_phase" != "Succeeded" ]
+
+#replacing this to accomodate rosa
+#dv_phase=$(${KC} -n ${IMAGES_NS} get dv win2k19 -o jsonpath='{.status.phase}')
+#while [ "$dv_phase" != "Succeeded" ]
+#do
+#    sleep 10
+#    dv_phase=$(${KC} -n ${IMAGES_NS} get dv win2k19 -o jsonpath='{.status.phase}')
+#    echo $dv_phase
+#done
+
+echo "checking if the pvc for windows got created"
+win_ready=$(${KC} get pvc -n openshift-virtualization-os-images win2k19 -o jsonpath='{.status.phase}')
+while [ "$win_ready" != "Bound" ]
 do
     sleep 10
-    dv_phase=$(${KC} -n ${IMAGES_NS} get dv win2k19 -o jsonpath='{.status.phase}')
-    echo $dv_phase
+    win_ready=$(${KC} get pvc -n openshift-virtualization-os-images win2k19 -o jsonpath='{.status.phase}')
 done
+
+
 
 echo "Cleaning up"
 ${KC} delete -f windows-install-vm.yaml
