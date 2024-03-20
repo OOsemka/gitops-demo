@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: windows-loadbalancer
+  namespace: windowsvm-gitops
+  #annotations:
+  #  service.beta.kubernetes.io/aws-load-balancer-type: external
+  #  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+  #  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  ports:
+    - name: rdp
+      protocol: TCP
+      port: 3389
+      targetPort: 3389
+      nodePort: 30738
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 32242
+  type: LoadBalancer
+  selector:
+    kubevirt.io/domain: win2k19-gitops
+    vm.kubevirt.io/name: win2k19-gitops
+  workload.template.kubevirt.io/server: 'true'

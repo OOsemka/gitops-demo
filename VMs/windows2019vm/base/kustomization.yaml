@@ -3,6 +3,7 @@ resources:
   - namespace.yaml
   - windows2019-unattended-configmap.yaml
   - windows2019-create-vm-from-template.yaml
+  - windows2019-loadbalancer.yaml
 
 #configMapGenerator:
 #- name: windows-vm-artifacts
