@@ -12,6 +12,15 @@ else
     IMAGES_NS=openshift-virtualization-os-images
 fi
 
+echo "check if windows iso pvc got created"
+pvc_ready=$(${KC} get pvc win2k19-install-iso -o jsonpath='{.status.phase}')
+while [ "$pvc_ready" != "Bound" ]
+do
+    sleep 10
+    pvc_ready=$(${KC} get pvc win2k19-install-iso -o jsonpath='{.status.phase}')
+done
+
+
 MYCM=$(${KC} get configmap -o name --sort-by=metadata.creationTimestamp | awk -F / '/windows-install-scripts/ {a=$2} END{ print a }')
 echo "Using ${MYCM}"
 sed "s/WININST_CM/${MYCM}/" windows-install-vm.yaml | ${KC} apply -f -

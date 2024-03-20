@@ -3,8 +3,8 @@ kind: Job
 metadata:
   name: windows-install
   namespace: kubevirt-gitops
-  annotations:
-    argocd.argoproj.io/hook: PostSync
+  #annotations:
+  #  argocd.argoproj.io/hook: PostSync
 spec:
   ttlSecondsAfterFinished: 600
   template:
