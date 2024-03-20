@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: windows-loadbalancer
   namespace: windowsvm-gitops
-  #annotations:
+  annotations:
+    argocd.argoproj.io/sync-wave: '4'
   #  service.beta.kubernetes.io/aws-load-balancer-type: external
   #  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
   #  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
