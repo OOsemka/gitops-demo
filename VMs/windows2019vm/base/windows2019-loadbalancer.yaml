@@ -14,12 +14,10 @@ spec:
       protocol: TCP
       port: 3389
       targetPort: 3389
-      nodePort: 30738
     - name: http
       protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 32242
   type: LoadBalancer
   selector:
     kubevirt.io/domain: win2k19-gitops
