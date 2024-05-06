@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 40Gi
   storageClassName: gp3
-  volumeMode: Block
+  volumeMode: Filesystem
