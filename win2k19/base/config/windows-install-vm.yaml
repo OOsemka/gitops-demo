@@ -71,7 +71,7 @@ spec:
       pvc:
         volumeMode: Block
         accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
         resources:
           requests:
             storage: 30Gi
