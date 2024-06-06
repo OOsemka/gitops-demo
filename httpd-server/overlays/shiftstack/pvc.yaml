@@ -5,9 +5,9 @@ metadata:
   namespace: httpd-server
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 40Gi
-  storageClassName: standard-csi
+  storageClassName: csi-manila-default
   volumeMode: Block
