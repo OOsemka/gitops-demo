@@ -1,0 +1,5 @@
+namespace: rhelvm-gitops
+resources:
+  - namespace.yaml
+  - rhel9-create-vm-from-template.yaml
+
